@@ -15,4 +15,5 @@
 
 ### Activar/Desactivar Modo Oscuro
 - Hace clic en el ícono de la extensión en la barra de herramientas del navegador para activar/desactivar el modo oscuro.
+  
 ![image](https://github.com/NahuelArn/extensionModeOscuroLocalPdf/assets/100500003/31c88566-ed07-45e2-a8de-0cd754983b22)
