@@ -1,21 +1,21 @@
 {
   "manifest_version": 3,
-  "name": "Modo Oscuro",
-  "version": "1.0",
-  "description": "Activa el modo oscuro al tocar la extensión.",
-  "permissions": ["activeTab"],
+  "name": "Modo Oscuro para PDFs Locales",
+  "version": "3.0",
+  "description": "Activa modo oscuro (invertido) para PDFs locales.",
+  "permissions": [
+    "scripting",
+    "activeTab"
+  ],
   "action": {
     "default_popup": "popup.html",
-    "default_icon": {
-      "16": "icon.png",
-      "48": "icon.png",
-      "128": "icon.png"
-    }
+    "default_icon": "icon.png"
   },
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["contentScript.js"]
-    }
+  "background": {
+    "service_worker": "background.js"
+  },
+  "host_permissions": [
+    "file:///*",
+    "<all_urls>"
   ]
 }

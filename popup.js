@@ -1,10 +1,21 @@
-document.addEventListener('DOMContentLoaded', function() {
-  var toggleButton = document.getElementById('toggleButton');
-  toggleButton.addEventListener('click', function() {
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-      chrome.tabs.sendMessage(tabs[0].id, {action: 'toggleDarkMode'});
-      toggleButton.classList.toggle('off');
-      toggleButton.textContent = toggleButton.classList.contains('off') ? 'Desactivar modo oscuro' : 'Activar modo oscuro';
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("toggleButton");
+
+  btn.addEventListener("click", async () => {
+    let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+
+    chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      func: toggleDarkMode,
     });
   });
+
+  function toggleDarkMode() {
+    const html = document.documentElement;
+    if (html.style.filter === "invert(1) hue-rotate(180deg)") {
+      html.style.filter = "";
+    } else {
+      html.style.filter = "invert(1) hue-rotate(180deg)";
+    }
+  }
 });
